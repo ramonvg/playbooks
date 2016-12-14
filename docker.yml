@@ -1,0 +1,6 @@
+---
+# playbook that installs docker and docker-compose on Ubuntu 16.04
+- hosts: all
+  become: yes
+  roles:
+    - docker
