@@ -1,0 +1,20 @@
+---
+- name: install zsh
+  apt: 
+    name: zsh
+    state: present
+  become: yes
+- name: install ohmyzsh
+  git:
+    repo:  https://github.com/robbyrussell/oh-my-zsh.git
+    dest: .oh-my-zsh
+- name: link ~/.dotfiles/zshrc → ~/.zshrc
+  file:
+    src: ~/.dotfiles/zshrc
+    dest: ~/.zshrc
+    state: link
+- name: link zsh theme
+  file:
+    src: ~/.dotfiles/oh-my-zsh/custom/ramonvg.zsh-theme
+    dest: ~/.oh-my-zsh/custom/ramonvg.zsh-theme
+    state: link
