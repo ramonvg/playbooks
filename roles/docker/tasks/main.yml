@@ -2,9 +2,9 @@
 - name: installing docker dependencies
   apt: name={{item}} state=installed update_cache=yes
   with_items:
-      - apt-transport-https
-      - ca-certificates
-      - python-pip
+  - apt-transport-https
+  - ca-certificates
+  - python-pip
 - name: import repo key
   apt_key:
     keyserver: hkp://p80.pool.sks-keyservers.net:80

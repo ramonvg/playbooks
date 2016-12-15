@@ -1,0 +1,40 @@
+---
+- name: clone dotfiles
+  git:
+    repo: https://github.com/ramonvg/dotfiles.git
+    dest: ~/.dotfiles
+- name: clone Vundle
+  git:
+    repo: https://github.com/gmarik/Vundle.vim.git 
+    dest: ~/.vim/bundle/Vundle.vim
+- name: add neovim ppa
+  apt_repository:
+    repo: 'ppa:neovim-ppa/unstable'
+  become: yes
+- name: install neovim
+  apt: pkg={{item}} state=installed update_cache=yes
+  become: yes
+  with_items:
+  - neovim
+  - python3-dev
+  - python3-pip
+  #- name: link dotfiles/vim → .vim
+  #  file:
+  #    src: ~/.dotfiles/vim
+  #    dest: ~/.vim
+  #    state: link
+- name: link dotfiles/vimrc → .vimrc
+  file:
+    src: ~/.dotfiles/vimrc
+    dest: ~/.vimrc
+    state: link
+- name: link vim → nvim
+  file:
+    src: ~/.dotfiles/vim
+    dest: ~/.config/nvim
+    state: link
+- name: link vimrc → nvimrc
+  file:
+    src: ~/.dotfiles/vimrc
+    dest: ~/.config/nvim/init.vim
+    state: link
