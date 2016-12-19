@@ -1,0 +1,8 @@
+---
+- hosts: localhost
+  roles: 
+    - desktop
+    - dotfiles
+    - docker
+    - zsh
+    - vim
