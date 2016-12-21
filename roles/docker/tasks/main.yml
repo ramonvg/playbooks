@@ -5,23 +5,30 @@
   - apt-transport-https
   - ca-certificates
   - python-pip
+  become: yes
 - name: import repo key
   apt_key:
     keyserver: hkp://p80.pool.sks-keyservers.net:80
     id: 58118E89F3A912897C070ADBF76221572C52609D
+  become: yes
 - name: add deb repository
   apt_repository:
     repo: "deb https://apt.dockerproject.org/repo ubuntu-xenial main"
+  become: yes
 - name: install docker
   apt: pkg=docker-engine state=installed update_cache=yes
+  become: yes
 - name: start docker
   service: name=docker state=started
+  become: yes
 - name: installing docker-compose
   pip:
     name: docker-compose
+  become: yes
 - name: add users to docker group
   user:
     name: "{{ item }}"
     groups: docker
     append: true
   with_items: "{{ docker_users }}"
+  become: yes

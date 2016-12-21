@@ -1,0 +1,31 @@
+- name: add neovim ppa
+  apt_repository:
+    repo: 'ppa:neovim-ppa/unstable'
+  become: yes
+- name: install neovim
+  apt: pkg={{ item }} state=installed update_cache=yes
+  become: yes
+  with_items:
+  - neovim
+  - python3-dev
+  - python3-pip
+  - exuberant-ctags
+- name: pip install nvim
+  pip:
+    name: "{{ item }}"
+    executable: pip3
+    state: latest
+  become: yes
+  with_items:
+  - neovim
+  - flake8
+- name: ensure ~/.config exists
+  file:
+    path: ~/.config/nvim
+    state: directory
+    mode: 0755
+- name: link vimrc → nvimrc
+  file:
+    src: ~/.dotfiles/init.vim
+    dest: ~/.config/nvim/init.vim
+    state: link

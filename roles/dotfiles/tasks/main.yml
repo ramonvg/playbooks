@@ -2,4 +2,10 @@
 - name: clone dotfiles 
   git:
     repo: https://github.com/ramonvg/dotfiles.git
-    dest: ~/.dotfiles
+    dest: "{{ dotfiles_dir }}"
+
+- name: link bash_alises
+  file:
+    src: "{{ dotfiles_dir }}/bash_aliases"
+    dest: ~/.bash_aliases
+    state: link
