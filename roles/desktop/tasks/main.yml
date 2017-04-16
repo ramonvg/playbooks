@@ -23,8 +23,16 @@
     - i3
     - i3lock
     - scrot
+    - lxrandr
+    - profanity
+    - irssi
+    - feh
   become: yes
 - name: install atom
   apt:
     deb: https://atom.io/download/deb
+  become: yes
+- name: install megasync
+  apt:
+    deb: https://mega.nz/linux/MEGAsync/xUbuntu_17.04/amd64/megasync-xUbuntu_17.04_amd64.deb
   become: yes

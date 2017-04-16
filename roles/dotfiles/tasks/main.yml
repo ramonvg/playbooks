@@ -1,7 +1,7 @@
 ---
-- name: clone dotfiles 
+- name: clone dotfiles
   git:
-    repo: https://github.com/ramonvg/dotfiles.git
+    repo: git@github.com:ramonvg/dotfiles.git
     dest: "{{ dotfiles_dir }}"
 
 - name: link bash_alises
@@ -9,3 +9,29 @@
     src: "{{ dotfiles_dir }}/bash_aliases"
     dest: ~/.bash_aliases
     state: link
+- name: link ansible.cfg
+  file:
+    src: "{{ dotfiles_dir }}/ansible.cfg"
+    dest: ~/.ansible.cfg
+    state: link
+- name: link gitconfig
+  file:
+    src: "{{ dotfiles_dir }}/gitconfig"
+    dest: ~/.gitconfig
+    state: link
+- name: create .irssi
+  file:
+    path: ~/.irssi
+    state: directory
+    mode: 0755
+- name: link irssi/config
+  file:
+    src: "{{ dotfiles_dir }}/irssi/config"
+    dest: ~/.irssi/config
+    state: link
+- name: link i3
+  file:
+    src: "{{ dotfiles_dir }}/i3"
+    dest: ~/.i3
+    state: link
+
