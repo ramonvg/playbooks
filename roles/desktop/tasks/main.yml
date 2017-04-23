@@ -27,11 +27,51 @@
     - profanity
     - irssi
     - feh
+    - shutter
+    - nautilus
   become: yes
 - name: install atom
   apt:
     deb: https://atom.io/download/deb
   become: yes
+- name: install atom packages
+  command: apm install {{item}}
+  with_items:
+    - atom-beautify
+    - auto-detect-indentation
+    - highlight-selected
+    - linter-docker
+    - linter-pylint
+    - nordkind-dark-syntax
+    - spotify-ui
+    - atom-material-syntax
+    - auto-indent
+    - language-docker
+    - linter-eslint
+    - MagicPython
+    - open-recent
+    - sublimify
+    - atom-material-ui
+    - blame
+    - language-javascript-jsx
+    - linter-flake8
+    - minimap
+    - project-plus
+    - unity-dark-ui
+    - atom-monokai-soda
+    - es-identifier-highlight
+    - lint
+    - linter-pep8
+    - minimap-git-diff
+    - project-viewer
+    - autocomplete-python
+    - file-icons
+    - linter
+    - linter-pycodestyle
+    - multi-cursor
+    - sort-lines
+    - language-rust
+    - linter-rust
 - name: install megasync
   apt:
     deb: https://mega.nz/linux/MEGAsync/xUbuntu_17.04/amd64/megasync-xUbuntu_17.04_amd64.deb

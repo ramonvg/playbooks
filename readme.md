@@ -1,2 +1,2 @@
 # Playbooks
-Ansible playbooks to set up some tasks on computers that I run.
+Ansible playbooks to set up some settings on computers that I run.
