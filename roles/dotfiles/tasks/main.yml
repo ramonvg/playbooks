@@ -34,4 +34,8 @@
     src: "{{ dotfiles_dir }}/i3"
     dest: ~/.i3
     state: link
-
+- name: link gitignoreglobal
+  file:
+    src: "{{ dotfiles_dir }}/gitignore_global"
+    dest: ~/.gitignore_global
+    state: link
