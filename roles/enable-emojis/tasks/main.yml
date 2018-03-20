@@ -1,0 +1,26 @@
+---
+- name: Download NotoColorEmoji
+  unarchive:
+    src: https://noto-website-2.storage.googleapis.com/pkgs/NotoColorEmoji-unhinted.zip
+    dest: /tmp
+    remote_src: yes
+
+- name: Copy NotoColorEmoji.ttf to ~/.fonts
+  copy:
+    src: /tmp/NotoColorEmoji.ttf
+    dest: ~/.fonts
+
+- name: Ensures ~/.config/fontconfig/ exists
+  file:
+    path: ~/.config/fontconfig/
+    recurse: yes
+    state: directory
+
+- name: Copy fonts.conf
+  copy:
+    src: fonts.conf
+    dest: ~/.config/fontconfig/fonts.conf
+
+- name: Flush fonts cache
+  command: fc-cache -f -v
+
